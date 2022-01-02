@@ -9,6 +9,4 @@
   };
 </script>
 
-<h1>QR redirect</h1>
-
 <Router {routes} />

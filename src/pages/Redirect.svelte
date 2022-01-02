@@ -19,4 +19,4 @@
   });
 </script>
 
-<h1>Redirection</h1>
+<h1>Redirection...</h1>
