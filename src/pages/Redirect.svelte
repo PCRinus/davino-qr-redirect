@@ -1,14 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { sample } from "lodash-es";
+  import { availableSites } from "../store";
 
-  const avaliableLinks = [
-    "https://www.google.com/",
-    "https://www.youtube.com/",
-    "https://developer.mozilla.org/en-US/",
-  ];
-
-  const randomLink = sample(avaliableLinks);
+  const randomLink = sample(availableSites);
 
   const redirectToLink = (url) => {
     window.location.replace(url);
