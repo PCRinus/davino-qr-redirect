@@ -11,7 +11,7 @@
   };
 
   onMount(async () => {
-    generateQR("localhost:5000#/redirect");
+    generateQR(window.location.href + "#/redirect");
   });
 </script>
 
