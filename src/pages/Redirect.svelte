@@ -3,7 +3,7 @@
   import { sample } from "lodash-es";
   import { availableSites } from "../store";
 
-  const randomLink = sample(availableSites);
+  const randomLink = sample($availableSites);
 
   const redirectToLink = (url) => {
     window.location.replace(url);
