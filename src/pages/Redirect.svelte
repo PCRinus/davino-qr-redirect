@@ -3,15 +3,23 @@
   import { sample } from "lodash-es";
   import { availableSites } from "../store";
 
-  const randomLink = sample($availableSites);
+  const errorMessage = false;
 
   const redirectToLink = (url) => {
-    window.location.replace(url);
+    if (!url) {
+      errorMessage = true;
+    } else {
+      window.location.replace(url);
+    }
   };
 
   onMount(async () => {
+    const randomLink = sample($availableSites);
     redirectToLink(randomLink);
   });
 </script>
 
 <h1>Redirection...</h1>
+{#if errorMessage}
+  <h1>No links was provided</h1>
+{/if}
