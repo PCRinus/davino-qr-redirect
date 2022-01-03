@@ -11,6 +11,7 @@
     });
     console.log(`Document written with ID: ${docRef.id}`);
     $availableSites = [...$availableSites, { url: newLink, id: docRef.id }];
+    newLink = "";
   };
 </script>
 
