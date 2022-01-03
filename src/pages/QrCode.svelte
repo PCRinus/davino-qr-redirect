@@ -40,22 +40,19 @@
   <ResetCurrentLinks />
 </div>
 
+<AddLink />
+
 {#if !isEmpty($availableSites)}
   <h2>Available sites:</h2>
 {:else}
   <h2>No sites are currently loaded.</h2>
 {/if}
-<h2>
-  <ul>
-    {#each $availableSites as site}
-      <li>
-        <a href={site.url}>{site.url}</a>
-        <RemoveLink currentLink={site.url} currentID={site.id}>
-          Remove
-        </RemoveLink>
-      </li>
-    {/each}
-  </ul>
-</h2>
 
-<AddLink />
+<ul>
+  {#each $availableSites as site}
+    <li>
+      <a href={site.url}>{site.url}</a>
+      <RemoveLink currentLink={site.url} currentID={site.id}>Remove</RemoveLink>
+    </li>
+  {/each}
+</ul>
