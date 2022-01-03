@@ -3,9 +3,11 @@
   import { sample } from "lodash-es";
   import { availableSites } from "../store";
 
-  const errorMessage = false;
+  let selectedLink = "";
+  let errorMessage = false;
 
   const redirectToLink = (url) => {
+    selectedLink = url;
     if (!url) {
       errorMessage = true;
     } else {
@@ -19,7 +21,7 @@
   });
 </script>
 
-<h1>Redirection...</h1>
+<h1>Redirecting to {selectedLink}...</h1>
 {#if errorMessage}
   <h1>No links was provided</h1>
 {/if}
