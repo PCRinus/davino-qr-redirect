@@ -4,6 +4,7 @@
   import { db } from "../firebaseConfig";
 
   let newLink = "";
+  $: disabled = newLink === "" ? "disabled" : "";
 
   const addLink = async (link) => {
     const docRef = await addDoc(collection(db, "current_links"), {
@@ -20,5 +21,5 @@
 
   <input type="text" name="addLink" bind:value={newLink} />
 
-  <button type="submit">Add link</button>
+  <button type="submit" {disabled}>Add link</button>
 </form>

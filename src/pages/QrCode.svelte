@@ -13,7 +13,9 @@
 
   const generateQR = async (text) => {
     try {
-      await QRCode.toCanvas(document.getElementById("canvas"), text);
+      await QRCode.toCanvas(document.getElementById("canvas"), text, {
+        errorCorrectionLevel: "H",
+      });
     } catch (err) {
       console.error(err);
     }
@@ -35,7 +37,7 @@
 
 <div>
   <LoadSampleLinks />
-  <!-- <ResetCurrentLinks /> -->
+  <ResetCurrentLinks />
 </div>
 
 {#if !isEmpty($availableSites)}
@@ -49,7 +51,7 @@
       <li>
         <a href={site.url}>{site.url}</a>
         <RemoveLink currentLink={site.url} currentID={site.id}>
-          Remove {site.url}
+          Remove
         </RemoveLink>
       </li>
     {/each}
