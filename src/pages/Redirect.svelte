@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import { sample } from "lodash-es";
   import { availableSites } from "../store";
+  import { collection, getDocs } from "firebase/firestore";
+  import { db } from "../firebaseConfig";
 
   let selectedLink = "";
   let errorMessage = false;
@@ -16,7 +18,14 @@
   };
 
   onMount(async () => {
-    const randomLink = sample($availableSites);
+    const snapshot = await getDocs(collection(db, "current_links"));
+    snapshot.forEach((doc) => {
+      $availableSites = [
+        ...$availableSites,
+        { url: doc.data().url, id: doc.id },
+      ];
+    });
+    const randomLink = sample($availableSites).url;
     redirectToLink(randomLink);
   });
 </script>
