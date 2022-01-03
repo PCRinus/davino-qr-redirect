@@ -1,8 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import QRCode from "qrcode";
+  import { isEmpty } from "lodash-es";
   import { availableSites } from "../store";
   import AddLink from "../components/AddLink.svelte";
+  import LoadSampleLinks from "../components/LoadSmapleLinks.svelte";
+  import RemoveLink from "../components/RemoveLink.svelte";
 
   const generateQR = async (text) => {
     try {
@@ -19,12 +22,23 @@
 
 <canvas id="canvas" />
 
-<h2>Available sites:</h2>
+<div>
+  <LoadSampleLinks />
+</div>
+
+{#if !isEmpty($availableSites)}
+  <h2>Available sites:</h2>
+{:else}
+  <h2>No sites are currently loaded.</h2>
+{/if}
 <h2>
   <ul>
     {#each $availableSites as site}
       <li>
         <a href={site}>{site}</a>
+        <RemoveLink currentLink={site}>
+          Remove {site}
+        </RemoveLink>
       </li>
     {/each}
   </ul>

@@ -5,6 +5,7 @@
 
   const addLink = (link) => {
     $availableSites = [...$availableSites, link];
+    console.log($availableSites);
   };
 </script>
 
