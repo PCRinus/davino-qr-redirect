@@ -1,11 +1,16 @@
 <script>
   import { availableSites } from "../store";
+  import { collection, addDoc } from "firebase/firestore";
+  import { db } from "../firebaseConfig";
 
   let newLink = "";
 
-  const addLink = (link) => {
-    $availableSites = [...$availableSites, link];
-    console.log($availableSites);
+  const addLink = async (link) => {
+    const docRef = await addDoc(collection(db, "current_links"), {
+      url: newLink,
+    });
+    console.log(`Document written with ID: ${docRef.id}`);
+    $availableSites = [...$availableSites, { url: newLink, id: docRef.id }];
   };
 </script>
 
